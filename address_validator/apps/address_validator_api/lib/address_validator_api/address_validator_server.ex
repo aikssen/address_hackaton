@@ -15,7 +15,7 @@ defmodule AddressValidatorApi.Server do
     def handle_call({:address_validator, address}, _from, state) do
         case AddressValidatorApi.GoogleApi.address_validate(address) do
             {:ok, body} -> {:reply, body, state}
-            {:error, reason} -> {:reply, reason, state}
+            {:error, reason} -> {:reply, :error, state}
         end
     end
     

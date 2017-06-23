@@ -7,8 +7,13 @@ defmodule AddressValidatorApi do
   Validate a given address
   """
   def validate_address(address) do
-    %{"results" => [%{"formatted_address" => formatted_address} | _t]} = address
-    |> AddressValidatorApi.Server.address_validator
-    formatted_address
+    case address |> AddressValidatorApi.Server.address_validator do
+      %{"results" => [%{"formatted_address" => formatted_address} | _t]}
+        -> {:ok, formatted_address}
+      %{"results" => [], "status" => "ZERO_RESULTS"}
+        -> {:no_valid}
+      :error
+        -> :error
+    end
   end
 end
