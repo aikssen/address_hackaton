@@ -11,9 +11,9 @@ defmodule AddressValidatorApi do
       %{"results" => [%{"formatted_address" => formatted_address} | _t]}
         -> {:ok, formatted_address}
       %{"results" => [], "status" => "ZERO_RESULTS"}
-        -> {:no_valid}
+        -> {:not_valid}
       :error
-        -> :error
+        -> {:error}
     end
   end
 end

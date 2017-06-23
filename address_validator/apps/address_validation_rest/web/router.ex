@@ -20,7 +20,9 @@ defmodule AddressValidationRest.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", AddressValidationRest do
-  #   pipe_through :api
-  # end
+  scope "/api", AddressValidationRest do
+    pipe_through :api
+
+    get "/addresses", AddressController, :get
+  end
 end
