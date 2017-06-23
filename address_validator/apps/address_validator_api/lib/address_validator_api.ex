@@ -13,7 +13,8 @@ defmodule AddressValidatorApi do
 
   """
   def validate_address(address) do
-    #{:ok, "9 de julio, CABA, Argentina …"}
-    #{:not_valid}
+    %{"results" => [%{"formatted_address" => formatted_address} | _t]} = address
+    |> AddressValidatorApi.Server.address_validator
+    formatted_address
   end
 end

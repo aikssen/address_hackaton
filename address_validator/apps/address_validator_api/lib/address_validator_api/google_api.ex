@@ -7,20 +7,20 @@ defmodule AddressValidatorApi.GoogleApi do
   """
 
   def address_validate(address) do
-      address
-      |> build_url
-      |> api_call
+    address
+    |> build_url
+    |> api_call
   end
 
   def build_url(address) do
-      "#{@api_url}?address=#{address}&key=#{@api_key}"
-      |> URI.encode
+    "#{@api_url}?address=#{address}&key=#{@api_key}"
+    |> URI.encode
   end
 
   def api_call(url) do
-      case HTTPoison.get(url) do
+    case HTTPoison.get(url) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
-          {:ok, body}
+          {:ok, Poison.decode!(body)}
       {:ok, %HTTPoison.Response{status_code: status}} ->
           {:error, status}
       {:error, %HTTPoison.Error{reason: reason}} ->
