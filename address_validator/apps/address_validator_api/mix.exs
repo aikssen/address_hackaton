@@ -39,7 +39,9 @@ defmodule AddressValidatorApi.Mixfile do
   defp deps do
     [
       {:httpoison, "~> 0.11.2" },
-      {:poison, "~> 2.0"}
+      {:poison, "~> 2.0"},
+      {:postgrex, ">= 0.0.0"},
+      {:ecto, "~> 2.1.4"}
     ]
   end
 end
