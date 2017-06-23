@@ -11,8 +11,8 @@ defmodule AddressValidationRest.AddressController do
   def get(conn, %{"address" => address}) do
     case address |> AddressValidatorApi.validate_address do
       {:ok, validated_address} -> render(conn, "address.json", address: validated_address)
-      {:not_valid} -> render(conn, "invalid_address.json")
-      {:error} -> conn |> put_status(500) |> render("500.json")
+      {:not_valid, _} -> render(conn, "invalid_address.json")
+      {:error, _} -> conn |> put_status(500) |> render("500.json")
     end
   end
 end
