@@ -4,13 +4,7 @@ defmodule AddressValidatorApi do
   """
 
   @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> AddressValidatorApi.hello
-      :world
-
+  Validate a given address
   """
   def validate_address(address) do
     %{"results" => [%{"formatted_address" => formatted_address} | _t]} = address
