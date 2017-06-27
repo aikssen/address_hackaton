@@ -29,14 +29,4 @@ use Mix.Config
 #
 import_config "#{Mix.env}.exs"
 
-# Configure your database
-config :address_validator_api, AddressValidatorApi.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  database: "address_validator",
-  username: "postgres",
-  password: "postgres",
-  hostname: "localhost",
-  port: 5432,
-  pool_size: 10
-
 config :address_validator_api, ecto_repos: [AddressValidatorApi.Repo]
