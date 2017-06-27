@@ -25,8 +25,15 @@ defmodule AddressValidatorApi do
     end
   end
 
+  def call_api_and_save(address) do
+    api_response = get_response_from_api(address)
+    save_address(api_response, address)
+
+    api_response
+  end
+
   def get_response_from_api(address) do
-    response = case address |> AddressValidatorApi.Server.address_validator do
+    case address |> AddressValidatorApi.Server.address_validator do
       %{"results" => [%{"formatted_address" => formatted_address} | _t]}
         -> {:ok, formatted_address}
       %{"results" => [], "status" => zero_results}
@@ -34,8 +41,9 @@ defmodule AddressValidatorApi do
       :error
         -> {:error, "Server Error"}
     end
-    {_, save_data} = response
-    Repo.insert(%Address{address: address, response: save_data})
-    response
+  end
+
+  def save_address({_, formatted_address}, address) do
+    Repo.insert(%Address{address: address, response: formatted_address})
   end
 end
