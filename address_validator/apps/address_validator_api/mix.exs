@@ -9,6 +9,7 @@ defmodule AddressValidatorApi.Mixfile do
      deps_path: "../../deps",
      lockfile: "../../mix.lock",
      elixir: "~> 1.4",
+     preferred_cli_env: [espec: :test],
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      deps: deps()]
@@ -41,7 +42,9 @@ defmodule AddressValidatorApi.Mixfile do
       {:httpoison, "~> 0.11.2" },
       {:poison, "~> 2.0"},
       {:postgrex, ">= 0.0.0"},
-      {:ecto, "~> 2.1.4"}
+      {:ecto, "~> 2.1.4"},
+      {:mock, "~> 0.2.0", only: :test},
+      {:espec, "~> 1.4.1", only: :test}
     ]
   end
 end
