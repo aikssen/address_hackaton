@@ -21,6 +21,9 @@ defmodule AddressValidator.Mixfile do
   # Dependencies listed here are available only for this project
   # and cannot be accessed from applications inside the apps folder
   defp deps do
-    [{:credo, "~> 0.8.1"}]
+    [
+      {:credo, "~> 0.8.1"},
+      {:meck, "~> 0.8.4"}
+    ]
   end
 end
